@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha · João Vitor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{
+    --ink-900:#0E1B2E; --ink-800:#1B2C46; --ink-600:#425067; --ink-400:#8792A3; --ink-200:#DDE2E9; --ink-100:#F1F3F6;
+    --amber:#F5A623; --amber-dark:#C97D0E; --amber-tint:#FFF3DE;
+    --teal:#0E9F6E; --teal-tint:#E5F9F0;
+    --coral:#E8563C; --coral-tint:#FDEAE6;
+    --blue:#3B7DDB; --blue-tint:#EAF1FC;
+    --paper:#FBFAF7; --card:#FFFFFF;
+    --radius-lg:20px; --radius-md:14px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(14,27,46,.04), 0 6px 16px rgba(14,27,46,.06);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink-900);font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+.disp{font-family:'Space Grotesk',sans-serif;}
+.app{max-width:540px;margin:0 auto;padding:0 0 48px;}
+.hero{
+    background:var(--ink-900);color:#fff;padding:28px 22px 22px;position:relative;overflow:hidden;
+      border-radius:0 0 28px 28px;
+}
+.hero-rays{position:absolute;top:-40px;right:-40px;width:150px;height:150px;opacity:.5;}
+.hero-inner{position:relative;z-index:1;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber);margin:0 0 6px;}
+.hero h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.2px;}
+.hero p{margin:5px 0 0;font-size:13px;color:#AEB9CC;}
+.view{padding:20px 18px 0;}
+.card{background:var(--card);border:1px solid var(--ink-100);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow);margin-bottom:14px;}
+.field{margin-bottom:16px;}
+.field:last-child{margin-bottom:0;}
+label{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--ink-600);margin:0 0 8px;text-transform:uppercase;letter-spacing:.5px;}
+label svg{width:13px;height:13px;stroke:var(--ink-400);flex-shrink:0;}
+select,input[type=text],input[type=tel],textarea{
+  width:100%;padding:13px 14px;border:1.5px solid var(--ink-200);border-radius:var(--radius-sm);
+  font-size:15px;font-family:'Inter',sans-serif;background:var(--ink-100);color:var(--ink-900);
+  transition:border-color .15s, background .15s;
+}
+select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23425067' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;}
+textarea{resize:vertical;min-height:56px;}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--amber);background:#fff;}
+::placeholder{color:var(--ink-400);}
+.statuses{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.stpick{border:1.5px solid var(--ink-200);border-radius:var(--radius-sm);padding:13px 4px;text-align:center;cursor:pointer;background:var(--ink-100);transition:all .15s;}
+.stpick svg{width:19px;height:19px;stroke:var(--ink-400);margin-bottom:5px;}
+.stpick .stxt{display:block;font-size:11.5px;font-weight:700;color:var(--ink-600);line-height:1.25;}
+.stpick.sel-ag{border-color:var(--teal);background:var(--teal-tint);}
+  .stpick.sel-ag svg{stroke:var(--teal);} .stpick.sel-ag .stxt{color:#086B47;}
+.stpick.sel-call{border-color:var(--blue);background:var(--blue-tint);}
+.stpick.sel-call svg{stroke:var(--blue);} .stpick.sel-call .stxt{color:#1E4E8C;}
+.stpick.sel-rec{border-color:var(--coral);background:var(--coral-tint);}
+.stpick.sel-rec svg{stroke:var(--coral);} .stpick.sel-rec .stxt{color:#A13418;}
+.extra{max-height:0;overflow:hidden;opacity:0;transition:max-height .25s ease, opacity .2s ease;}
+.extra.show{max-height:900px;opacity:1;margin-top:16px;padding-top:16px;border-top:1.5px dashed var(--ink-200);}
+.submit{width:100%;padding:16px;border:none;border-radius:var(--radius-sm);background:var(--amber);color:#3A2500;
+  font-size:15.5px;font-weight:700;cursor:pointer;margin-top:18px;font-family:'Inter',sans-serif;
+  box-shadow:0 4px 12px rgba(245,166,35,.35);transition:transform .1s;}
+.submit:active{transform:scale(.98);background:var(--amber-dark);}
+.ok-msg{display:flex;align-items:center;justify-content:center;gap:6px;color:#086B47;font-size:13.5px;font-weight:700;padding:12px 0 0;opacity:0;transition:opacity .2s;}
+.ok-msg.show{opacity:1;}
+.ok-msg svg{width:16px;height:16px;stroke:#086B47;}
+</style>
+  </head>
+  <body>
+  <div class="app">
+    <div class="hero">
+      <svg class="hero-rays" viewBox="0 0 150 150" fill="none"><circle cx="105" cy="45" r="26" fill="#F5A623" opacity=".9"/><g stroke="#F5A623" stroke-width="4" stroke-linecap="round" opacity=".55"><line x1="105" y1="0" x2="105" y2="-14"/><line x1="150" y1="45" x2="164" y2="45"/><line x1="137" y1="13" x2="147" y2="3"/><line x1="137" y1="77" x2="147" y2="87"/><line x1="73" y1="13" x2="63" y2="3"/><line x1="73" y1="77" x2="63" y2="87"/></g></svg>
+      <div class="hero-inner">
+        <p class="eyebrow">Multiluz Solar · CSC SDR</p>
+      <h1 class="disp">João Vitor</h1>
+      <p>Registrar nova ficha</p>
+    </div>
+    </div>
+    <div class="view">
+      <div class="card">
+        <div class="field">
+          <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>Nome do cliente</label>
+          <input type="text" id="fNome" placeholder="Nome completo">
+        </div>
+        <div class="field">
+          <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Telefone</label>
+          <input type="tel" id="fTel" placeholder="(31) 99999-9999">
+        </div>
+        <div class="field">
+          <label>Status do contato</label>
+          <div class="statuses">
+            <div class="stpick" data-st="agendado"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="stxt">Agendou<br>visita</span></div>
+            <div class="stpick" data-st="ligacao"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 5v5h5"/></svg><span class="stxt">Precisa<br>ligação</span></div>
+            <div class="stpick" data-st="recusado"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><span class="stxt">Recusou</span></div>
+          </div>
+        </div>
+        <div class="extra" id="extraFields">
+          <div class="field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5" fill="currentColor" stroke="none"/></svg>Origem</label>
+            <input type="text" id="fOrigem" list="origensList" placeholder="Site, Instagram, Indicação...">
+            <datalist id="origensList">
+              <option>Site</option><option>Instagram</option><option>Facebook</option><option>WhatsApp</option>
+              <option>Ligação</option><option>Mega Feirão</option><option>Meta Ads</option><option>Indicação</option>
+            <option>Loja Física</option><option>Leads César</option>
+          </datalist>
+        </div>
+          <div class="field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Endereço completo</label>
+          <textarea id="fEndereco" placeholder="Rua, número, bairro, cidade"></textarea>
+        </div>
+        <div class="field">
+          <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Data e hora do agendamento</label>
+            <input type="text" id="fDataHora" placeholder="Ex: 12/08 às 14h00">
+          </div>
+          <div class="field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 10v10h14V10"/></svg>Tipo de telhado</label>
+          <input type="text" id="fTelhado" placeholder="Metálico, colonial, laje...">
+          </div>
+          <div class="field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"/></svg>Padrão elétrico</label>
+            <input type="text" id="fPadrao" placeholder="Monofásico, bifásico, trifásico">
+          </div>
+          <div class="field">
+            <label><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>Objetivo</label>
+            <textarea id="fObjetivo" placeholder="O que o cliente quer / observações"></textarea>
+          </div>
+        </div>
+        <button class="submit" id="btnSubmit">Registrar ficha</button>
+        <div class="ok-msg" id="okMsg"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>Ficha registrada</div>
+      </div>
+    </div>
+  </div>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  // ======= CONFIGURACAO DO FIREBASE =======
+  const firebaseConfig = {
+        apiKey: "AIzaSyAFPYBGBcBDAlM8EnJ66HyPHWPq2FEP58s",
+              authDomain: "multiluz-csc.firebaseapp.com",
+              projectId: "multiluz-csc",
+              storageBucket: "multiluz-csc.firebasestorage.app",
+              messagingSenderId: "478787890418",
+              appId: "1:478787890418:web:1c8007e4486460c7b1b46b"
+          };
+  // ==========================================
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const SDR_NAME = "João Vitor Pereira Ferreira";
+let selectedStatus = "";
+document.querySelectorAll(".stpick").forEach(el=>{
+    el.addEventListener("click",()=>{
+      document.querySelectorAll(".stpick").forEach(x=>x.className="stpick");
+      selectedStatus = el.dataset.st;
+    const cls = el.dataset.st==="agendado" ? "sel-ag" : el.dataset.st==="ligacao" ? "sel-call" : "sel-rec";
+    el.classList.add(cls);
+    document.getElementById("extraFields").classList.toggle("show", selectedStatus==="agendado");
+       });
+});
+document.getElementById("btnSubmit").addEventListener("click", async ()=>{
+    const nome = document.getElementById("fNome").value.trim();
+  const tel = document.getElementById("fTel").value.trim();
+  if(!nome || !tel || !selectedStatus){
+    alert("Preencha nome, telefone e status.");
+    return;
+  }
+  const entry = {
+        sdr: SDR_NAME, nome, tel, status: selectedStatus,
+              createdAt: new Date().toISOString(),
+              ts: serverTimestamp()
+};
+  if(selectedStatus === "agendado"){
+    entry.origem = document.getElementById("fOrigem").value.trim();
+    entry.endereco = document.getElementById("fEndereco").value.trim();
+    entry.dataHora = document.getElementById("fDataHora").value.trim();
+    entry.telhado = document.getElementById("fTelhado").value.trim();
+    entry.padrao = document.getElementById("fPadrao").value.trim();
+    entry.objetivo = document.getElementById("fObjetivo").value.trim();
+  }
+  try{
+    await addDoc(collection(db, "fichas"), entry);
+    const okEl = document.getElementById("okMsg");
+    okEl.classList.add("show");
+    setTimeout(()=>{okEl.classList.remove("show");},1900);
+    ["fNome","fTel","fOrigem","fEndereco","fDataHora","fTelhado","fPadrao","fObjetivo"].forEach(id=>{
+            const el=document.getElementById(id); if(el) el.value="";
+  });
+    document.querySelectorAll(".stpick").forEach(x=>x.className="stpick");
+    document.getElementById("extraFields").classList.remove("show");
+    selectedStatus="";
+}catch(e){
+    alert("Erro ao salvar. Verifique a configuração do Firebase. " + e.message);
+}
+});
+</script>
+</body>
+</html>
