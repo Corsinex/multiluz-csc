@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiluz · Dashboard</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{
+    --ink-900:#0E1B2E; --ink-800:#1B2C46; --ink-600:#425067; --ink-400:#8792A3; --ink-200:#DDE2E9; --ink-100:#F1F3F6;
+    --amber:#F5A623; --amber-dark:#C97D0E; --amber-tint:#FFF3DE;
+    --teal:#0E9F6E; --teal-tint:#E5F9F0;
+    --coral:#E8563C; --coral-tint:#FDEAE6;
+    --blue:#3B7DDB; --blue-tint:#EAF1FC;
+    --paper:#FBFAF7; --card:#FFFFFF;
+    --radius-lg:20px; --radius-md:14px; --radius-sm:10px;
+    --shadow:0 1px 2px rgba(14,27,46,.04), 0 6px 16px rgba(14,27,46,.06);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--paper);color:var(--ink-900);font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;}
+.disp{font-family:'Space Grotesk',sans-serif;}
+.app{max-width:820px;margin:0 auto;padding:0 0 56px;}
+.hero{background:var(--ink-900);color:#fff;padding:26px 24px 22px;border-radius:0 0 28px 28px;display:flex;justify-content:space-between;align-items:flex-start;position:relative;overflow:hidden;}
+.hero-rays{position:absolute;top:-40px;right:20px;width:150px;height:150px;opacity:.5;}
+.hero-inner{position:relative;z-index:1;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--amber);margin:0 0 6px;}
+.hero h1{font-size:22px;font-weight:700;margin:0;letter-spacing:-.2px;}
+.hero p{margin:5px 0 0;font-size:13px;color:#AEB9CC;}
+.refresh{position:relative;z-index:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;}
+.refresh svg{width:14px;height:14px;stroke:#fff;}
+.btn-row{display:flex;gap:8px;position:relative;z-index:1;}
+.export{background:var(--amber);border:none;color:#3A2500;font-size:12.5px;font-weight:700;padding:9px 16px;border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;}
+.export svg{width:14px;height:14px;stroke:#3A2500;}
+.export-panel{display:flex;flex-wrap:wrap;gap:8px;}
+.export-chip{background:var(--ink-100);border:1.5px solid var(--ink-200);color:var(--ink-800);font-size:12.5px;font-weight:600;padding:9px 14px;border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px;}
+.export-chip svg{width:14px;height:14px;stroke:var(--ink-600);}
+.export-chip.all{background:var(--amber);border-color:var(--amber);color:#3A2500;}
+.export-chip.all svg{stroke:#3A2500;}
+.view{padding:22px 20px 0;}
+.card{background:var(--card);border:1px solid var(--ink-100);border-radius:var(--radius-lg);padding:20px;box-shadow:var(--shadow);margin-bottom:14px;}
+.section-title{font-size:12px;font-weight:700;color:var(--ink-600);text-transform:uppercase;letter-spacing:.6px;margin:24px 4px 10px;}
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.stat{background:var(--card);border:1px solid var(--ink-100);border-radius:var(--radius-lg);padding:18px 12px;text-align:center;box-shadow:var(--shadow);}
+.stat .num{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--ink-900);line-height:1;font-variant-numeric:tabular-nums;}
+.stat .lbl{font-size:11px;color:var(--ink-400);margin-top:7px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+.status-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.stbox{border-radius:var(--radius-md);padding:16px 8px;text-align:center;}
+.stbox svg{width:20px;height:20px;margin-bottom:6px;}
+.stbox.ag{background:var(--teal-tint);} .stbox.ag svg{stroke:var(--teal);}
+.stbox.call{background:var(--blue-tint);} .stbox.call svg{stroke:var(--blue);}
+.stbox.rec{background:var(--coral-tint);} .stbox.rec svg{stroke:var(--coral);}
+.stbox .n{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;}
+.stbox.ag .n{color:#086B47;} .stbox.call .n{color:#1E4E8C;} .stbox.rec .n{color:#A13418;}
+.stbox .l{font-size:11px;font-weight:600;margin-top:3px;line-height:1.3;}
+.stbox.ag .l{color:#086B47;} .stbox.call .l{color:#1E4E8C;} .stbox.rec .l{color:#A13418;}
+.note{font-size:11.5px;color:var(--ink-400);margin-top:12px;text-align:center;}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:11px;}
+.bar-row:last-child{margin-bottom:0;}
+.bar-label{width:140px;font-size:13px;color:var(--ink-600);font-weight:500;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{flex:1;background:var(--ink-100);border-radius:8px;height:18px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--amber);border-radius:8px;}
+.bar-val{width:24px;text-align:right;font-size:13px;font-weight:700;color:var(--ink-800);font-variant-numeric:tabular-nums;}
+.fu-item{padding:14px 0;border-bottom:1px solid var(--ink-100);}
+.fu-item:last-child{border-bottom:none;}
+.fu-top{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.fu-name{font-size:14.5px;font-weight:600;color:var(--ink-900);}
+.fu-meta{font-size:12px;color:var(--ink-400);margin-top:3px;}
+.fu-call{font-size:12.5px;font-weight:700;color:var(--amber-dark);text-decoration:none;padding:8px 14px;border:1.5px solid var(--amber);border-radius:var(--radius-sm);flex-shrink:0;display:flex;align-items:center;gap:5px;}
+.fu-call svg{width:13px;height:13px;stroke:var(--amber-dark);}
+.empty{text-align:center;color:var(--ink-400);font-size:13.5px;padding:24px 0;}
+.pill{display:inline-flex;align-items:center;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;margin-left:8px;}
+.pill-call{background:var(--blue-tint);color:#1E4E8C;}
+.pill-rec{background:var(--coral-tint);color:#A13418;}
+.ag-item{border:1px solid var(--ink-100);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:10px;background:var(--ink-100)/*fallback*/;background:#FAFBFC;}
+.ag-item:last-child{margin-bottom:0;}
+.ag-name{font-size:14.5px;font-weight:700;color:var(--ink-900);display:flex;align-items:center;gap:8px;}
+.ag-badge{background:var(--teal-tint);color:#086B47;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.ag-meta{font-size:12.5px;color:var(--ink-600);margin-top:8px;line-height:1.85;}
+.ag-meta b{color:var(--ink-800);font-weight:600;}
+</style>
+  </head>
+  <body>
+  <div class="app">
+    <div class="hero">
+      <svg class="hero-rays" viewBox="0 0 150 150" fill="none"><circle cx="105" cy="45" r="26" fill="#F5A623" opacity=".9"/><g stroke="#F5A623" stroke-width="4" stroke-linecap="round" opacity=".55"><line x1="105" y1="0" x2="105" y2="-14"/><line x1="150" y1="45" x2="164" y2="45"/><line x1="137" y1="13" x2="147" y2="3"/><line x1="137" y1="77" x2="147" y2="87"/><line x1="73" y1="13" x2="63" y2="3"/><line x1="73" y1="77" x2="63" y2="87"/></g></svg>
+      <div class="hero-inner">
+        <p class="eyebrow">Multiluz Solar · CSC SDR</p>
+        <h1 class="disp">Dashboard</h1>
+        <p>Visão diária e semanal</p>
+      </div>
+      <button class="refresh" id="btnRefresh"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>Atualizar</button>
+    </div>
+    <div class="view">
+      <div class="section-title" style="margin-top:0;">Baixar planilha</div>
+      <div class="card export-panel">
+        <button class="export-chip all" data-sdr="__all__"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Todos</button>
+        <button class="export-chip" data-sdr="João Vitor Pereira Ferreira"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>João Vitor</button>
+        <button class="export-chip" data-sdr="Maria Eduarda Santos"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Duda</button>
+        <button class="export-chip" data-sdr="Caio Souza Drumond"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Caio</button>
+        <button class="export-chip" data-sdr="Tarsila Pires"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>Tarsila</button>
+      </div>
+      <div class="stats3">
+        <div class="stat"><div class="num" id="stToday">0</div><div class="lbl">Hoje</div></div>
+        <div class="stat"><div class="num" id="stWeek">0</div><div class="lbl">Semana</div></div>
+        <div class="stat"><div class="num" id="stTotal">0</div><div class="lbl">Total</div></div>
+      </div>
+      <div class="section-title">Hoje — por status</div>
+      <div class="card">
+        <div class="status-row">
+          <div class="stbox ag"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg><div class="n" id="tAg">0</div><div class="l">Agendamentos<br>reais</div></div>
+          <div class="stbox call"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 2.64-6.36"/><path d="M3 5v5h5"/></svg><div class="n" id="tCall">0</div><div class="l">Precisam<br>ligação</div></div>
+          <div class="stbox rec"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg><div class="n" id="tRec">0</div><div class="l">Recusaram</div></div>
+        </div>
+        <div class="note">Só "Agendamentos reais" conta como visita marcada.</div>
+      </div>
+      <div class="section-title">Agendamentos de hoje</div>
+      <div class="card" id="agendaHoje"></div>
+      <div class="section-title">Por origem — últimos 7 dias</div>
+      <div class="card" id="barsOrigem"></div>
+      <p class="note" style="text-align:left;margin:-6px 4px 0;">Origem só é registrada quando o cliente agenda.</p>
+      <div class="section-title">Follow-up pendente</div>
+      <div class="card" id="followList"></div>
+    </div>
+  </div>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  // ======= COLE AQUI A CONFIGURACAO DO FIREBASE (passo 4) =======
+  const firebaseConfig = {
+        apiKey: "AIzaSyAFPYBGBcBDAlM8EnJ66HyPHWPq2FEP58s",
+        authDomain: "multiluz-csc.firebaseapp.com",
+        projectId: "multiluz-csc",
+        storageBucket: "multiluz-csc.firebasestorage.app",
+        messagingSenderId: "478787890418",
+        appId: "1:478787890418:web:1c8007e4486460c7b1b46b"
+  };
+  // ==================================================================
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+document.getElementById("btnRefresh").onclick = loadAll;
+document.querySelectorAll(".export-chip").forEach(btn=>{
+    btn.addEventListener("click", ()=> exportCSV(btn.dataset.sdr));
+});
+function statusLabel(s){
+    if(s==="agendado") return "Agendou visita";
+    if(s==="ligacao") return "Precisa ligação";
+    if(s==="recusado") return "Recusou";
+    return s;
+}
+function csvField(v){
+    const s = String(v==null?"":v);
+    if(s.includes(",")||s.includes('"')||s.includes("\n")) return '"'+s.replace(/"/g,'""')+'"';
+                                                                                  return s;
+                                                                                }
+                                                                                async function loadAllFichas(){
+                                                                                    const snap = await getDocs(collection(db, "fichas"));
+                                                                                    const results = [];
+                                                                                    snap.forEach(doc=> results.push(doc.data()));
+                                                                                    return results;
+                                                                                }
+                                                                                async function exportCSV(sdrFilter){
+                                                                                    let fichas = await loadAllFichas();
+                                                                                    if(sdrFilter && sdrFilter !== "__all__"){
+                                                                                          fichas = fichas.filter(f=>f.sdr === sdrFilter);
+                                                                                    }
+                                                                                    fichas.sort((a,b)=>new Date(a.createdAt)-new Date(b.createdAt));
+                                                                                    const headers = ["Data/Hora Registro","SDR","Nome","Telefone","Status","Origem","Endereço","Data Agendamento","Telhado","Padrão Elétrico","Objetivo"];
+                                                                                    const rows = fichas.map(f=>[
+                                                                                          new Date(f.createdAt).toLocaleString("pt-BR"),
+                                                                                          f.sdr||"", f.nome||"", f.tel||"", statusLabel(f.status),
+                                                                                          f.origem||"", f.endereco||"", f.dataHora||"", f.telhado||"", f.padrao||"", f.objetivo||""
+                                                                                        ]);
+                                                                                    const csv = [headers, ...rows].map(r=>r.map(csvField).join(",")).join("\n");
+                                                                                    const blob = new Blob(["\uFEFF"+csv], {type:"text/csv;charset=utf-8;"});
+                                                                                    const url = URL.createObjectURL(blob);
+                                                                                    const a = document.createElement("a");
+                                                                                    const today = new Date().toISOString().slice(0,10);
+                                                                                    const suffix = (!sdrFilter || sdrFilter==="__all__") ? "todos" : sdrFilter.split(" ")[0].toLowerCase();
+                                                                                    a.href = url; a.download = "fichas_multiluz_"+suffix+"_"+today+".csv";
+                                                                                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                                                                                        URL.revokeObjectURL(url);
+                                                                                }
+                                                                                function isToday(d){ const now=new Date(); const dt=new Date(d); return now.toDateString()===dt.toDateString(); }
+                                                                                function isThisWeek(d){ const now=new Date(); const dt=new Date(d); const diff=(now-dt)/(1000*60*60*24); return diff<=7 && diff>=0; }
+                                                                                function esc(s){ return String(s||"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+                                                                                                                                function renderBars(containerId, data, field){
+                                                                                                                                    const counts = {};
+                                                                                                                                    data.forEach(f=>{ counts[f[field]] = (counts[f[field]]||0) + 1; });
+                                                                                                                                    const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+                                                                                                                                    const max = entries.length ? entries[0][1] : 1;
+                                                                                                                                    const el = document.getElementById(containerId);
+                                                                                                                                    if(entries.length===0){ el.innerHTML = '<div class="empty">Sem dados nos últimos 7 dias</div>'; return; }
+                                                                                                                                    el.innerHTML = entries.map(([label,count])=>{
+                                                                                                                                          const pct = Math.round((count/max)*100);
+                                                                                                                                          return '<div class="bar-row"><div class="bar-label">'+esc(label)+'</div><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div><div class="bar-val">'+count+'</div></div>';
+                                                                                                                                    }).join("");
+                                                                                                                                }
+                                                                                                                                async function loadAll(){
+                                                                                                                                    const fichas = await loadAllFichas();
+                                                                                                                                    const today = fichas.filter(f=>isToday(f.createdAt));
+                                                                                                                                    const week = fichas.filter(f=>isThisWeek(f.createdAt));
+                                                                                                                                    document.getElementById("stToday").textContent = today.length;
+                                                                                                                                    document.getElementById("stWeek").textContent = week.length;
+                                                                                                                                    document.getElementById("stTotal").textContent = fichas.length;
+                                                                                                                                    document.getElementById("tAg").textContent = today.filter(f=>f.status==="agendado").length;
+                                                                                                                                    document.getElementById("tCall").textContent = today.filter(f=>f.status==="ligacao").length;
+                                                                                                                                    document.getElementById("tRec").textContent = today.filter(f=>f.status==="recusado").length;
+                                                                                                                                    const agHoje = today.filter(f=>f.status==="agendado");
+                                                                                                                                    const agEl = document.getElementById("agendaHoje");
+                                                                                                                                    if(agHoje.length===0){
+                                                                                                                                          agEl.innerHTML = '<div class="empty">Nenhum agendamento real hoje</div>';
+                                                                                                                                    }else{
+                                                                                                                                          agEl.innerHTML = agHoje.map(f=>{
+                                                                                                                                                  return '<div class="ag-item"><div class="ag-name">'+esc(f.nome)+'<span class="ag-badge">'+esc(f.origem||"—")+'</span></div>'+
+                                                                                                                                                            '<div class="ag-meta">'+
+                                                                                                                                                            (f.dataHora ? '<b>Quando</b> '+esc(f.dataHora)+'<br>' : '')+
+                                                                                                                                                            (f.endereco ? '<b>Endereço</b> '+esc(f.endereco)+'<br>' : '')+
+                                                                                                                                                            (f.telhado ? '<b>Telhado</b> '+esc(f.telhado)+'  ·  ' : '')+
+                                                                                                                                                            (f.padrao ? '<b>Padrão</b> '+esc(f.padrao)+'<br>' : '<br>')+
+                                                                                                                                                            (f.objetivo ? '<b>Objetivo</b> '+esc(f.objetivo)+'<br>' : '')+
+                                                                                                                                                            '<b>SDR</b> '+esc(f.sdr)+
+                                                                                                                                                            '</div></div>';
+                                                                                                                                          }).join("");
+                                                                                                                                    }
+                                                                                                                                    renderBars("barsOrigem", week, "origem");
+                                                                                                                                    const followUps = fichas.filter(f=>f.status!=="agendado").sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+                                                                                                                                    const followEl = document.getElementById("followList");
+                                                                                                                                    if(followUps.length===0){
+                                                                                                                                          followEl.innerHTML = '<div class="empty">Nenhum follow-up pendente</div>';
+                                                                                                                                    }else{
+                                                                                                                                          followEl.innerHTML = followUps.map(f=>{
+                                                                                                                                                  const pillClass = f.status==="ligacao" ? "pill-call" : "pill-rec";
+                                                                                                                                                  const pillText = f.status==="ligacao" ? "Precisa ligação" : "Recusou";
+                                                                                                                                                  const telClean = (f.tel||"").replace(/\D/g,"");
+                                                                                                                                                  return '<div class="fu-item"><div class="fu-top"><div><div class="fu-name">'+esc(f.nome)+'<span class="pill '+pillClass+'">'+pillText+'</span></div>'+
+                                                                                                                                                            '<div class="fu-meta">'+esc((f.sdr||"").split(" ")[0])+'</div></div>'+
+                                                                                                                                                            '<a class="fu-call" href="tel:'+telClean+'"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Ligar</a></div></div>';
+                                                                                                                                          }).join("");
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                                loadAll();
+                                                                                                                                </script>
+                                                                                                                                </body>
+                                                                                                                                </html>
+                                                                                                                                
